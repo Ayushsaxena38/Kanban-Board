@@ -1,8 +1,36 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Layout/Layout";
+import NotFoundPage from "./pages/NotFountPage";
+
+
+const routes = [
+  {
+    path:"/",
+    element : <Layout />,
+    errorElement : <NotFoundPage />,
+    children : [
+      // {
+      //   path:"/",
+      //   element : <BoardList />
+      // },
+      // {
+      //   path:"/boards",
+      //   element : <BoardLIst />
+      // },
+      // {
+      //   path:"/boards/:boardId",
+      //   element: <boardDetail />
+      // },
+      // {
+      //   path:"/boards/:boardId/card/:cardId",
+      //   element:<cardDetail />
+      // }
+    ]
+  }
+]
+
+const router = createBrowserRouter(routes);
+
 export default function App(){
-  return (
-    <div>
-      <h1>My App</h1>
-      <p>This is a simple React app.</p>
-    </div>
-  );
+  return <RouterProvider router = {router} />
 }
