@@ -4,6 +4,8 @@ import NotFoundPage from "./pages/NotFountPage";
 import BoardList from "./pages/BoardList";
 import BoardDetails from "./pages/BoardDetails";
 import CardDetails from "./pages/CardDetails";
+import {store} from "./store";
+import { Provider } from "react-redux";
 
 
 const routes = [
@@ -35,5 +37,5 @@ const routes = [
 const router = createBrowserRouter(routes);
 
 export default function App(){
-  return <RouterProvider router = {router} />
+  return (<Provider store={store}><RouterProvider router = {router} /></Provider>)
 }
