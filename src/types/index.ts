@@ -20,3 +20,9 @@ export interface RootState {
         error : string | null;
     }
 }
+
+export interface BoardsState {
+    items: Record<string, Board>;
+    loading: boolean;
+    error: string | null;
+}

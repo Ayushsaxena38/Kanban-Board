@@ -12,6 +12,8 @@
   --breakpoint-500px: 500px; 
 }
 
+
+
 @layer base {
   body {
     @apply text-gray-100 bg-dark 2xl:max-w-screen-2xl 2xl:mx-auto;

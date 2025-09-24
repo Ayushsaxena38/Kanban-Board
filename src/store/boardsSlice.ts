@@ -1,11 +1,6 @@
 import {createSlice , type PayloadAction} from '@reduxjs/toolkit';
-import type { Board } from '../types/index';
+import type { BoardsState, Card } from '../types/index';
 
-interface BoardsState {
-    items: Record<string, Board>;
-    loading: boolean;
-    error: string | null;
-}
 const initialState:BoardsState = {
     items:{},
     loading:false,
@@ -23,11 +18,27 @@ const BoardsSlice = createSlice({
         cards: [],
       };
     },
-    resetBoards: () => initialState, // ← Add this
+    resetBoards: () => initialState, // ← Add this,
+    addCart:(state, action:PayloadAction<{cart:Card,boardId:string}>) => {
+      const board = state.items[action.payload.boardId];
+      board.cards.push(action.payload.cart);
+    },
+    deleteThisBoard : (state , action: PayloadAction<string>)=>{
+      delete state.items[action.payload];
+    },
+    updateCard:(state , action:PayloadAction<{boardId:string , updatedCard:Card}>)=>{
+      const board = state.items[action.payload.boardId];
+      let cardIndex = board.cards.findIndex(ele=>ele.id == action.payload.updatedCard.id);
+      board.cards[cardIndex] = {...action.payload.updatedCard};
+    },
+    deleteCard : (state , action:PayloadAction<{boardId : string , cardId : string}>)=>{
+      const board = state.items[action.payload.boardId];
+      board.cards = board.cards.filter(card => card.id !== action.payload.cardId);
+    }
   },
 });
 
-export const { createBoard, resetBoards } = BoardsSlice.actions;
+export const { createBoard, resetBoards , addCart , deleteThisBoard , updateCard , deleteCard} = BoardsSlice.actions;
 export default BoardsSlice.reducer;
 
 
