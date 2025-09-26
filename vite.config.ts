@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 // })
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(),tailwind()],
   preview: {
     allowedHosts: ['kanban-board-2-m7hi.onrender.com'], // add your Render host here
     port: 10000, // optional, match your package.json start script
